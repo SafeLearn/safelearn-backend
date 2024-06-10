@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MaquinaDaoLocal extends MaquinaDao {
+
     @Override
     public Boolean verificarRegistro(UsoProcessador processador) {
         String sql = "SELECT * FROM maquina WHERE idProcessador = (?)";

@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class App  {
+public class App {
     public static void main(String[] args) {
 
         InserirRegistros inserirRegistros = new InserirRegistros();
@@ -20,8 +20,10 @@ public class App  {
         UsoDisco disco = new UsoDisco();
         GrupoJanelas janelas = new GrupoJanelas();
         Bateria bateria = new Bateria();
-        maquinaDaoServer.setStatus(processador);
         SlackIntegracao slackIntegracao = new SlackIntegracao();
+
+        maquinaDaoLocal.inserirDadosMaquina(processador, new Sistema(), 1);
+        maquinaDaoLocal.inserirDadosComponente(processador, memoriaRam, disco);
 
         List<Integer> idsComponentesServer = maquinaDaoServer.getIdsComponentes(processador);
         List<Integer> idsComponentesLocal = maquinaDaoLocal.getIdsComponentes(processador);
@@ -46,7 +48,7 @@ public class App  {
                     maquinaDaoLocal.inserirDadosProcessso(processador, janelas);
                     maquinaDaoServer.inserirDadosProcessso(processador, janelas);
                     maquinaDaoLocal.inserirDadosBateria(processador, bateria);
-                    maquinaDaoServer.inserirDadosBateria(processador,bateria);
+                    maquinaDaoServer.inserirDadosBateria(processador, bateria);
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.err.println("Erro no monitoramento: " + e.getMessage());
