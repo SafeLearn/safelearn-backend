@@ -10,7 +10,6 @@ import java.util.concurrent.TimeUnit;
 
 public class App {
     public static void main(String[] args) {
-
         InserirRegistros inserirRegistros = new InserirRegistros();
 
         MaquinaDaoServer maquinaDaoServer = new MaquinaDaoServer();
@@ -22,9 +21,11 @@ public class App {
         Bateria bateria = new Bateria();
         SlackIntegracao slackIntegracao = new SlackIntegracao();
 
-        maquinaDaoLocal.inserirDadosMaquina(processador, new Sistema(), 1);
-        maquinaDaoLocal.inserirDadosComponente(processador, memoriaRam, disco);
-
+        if (!maquinaDaoLocal.verificarRegistro(processador)) {
+            maquinaDaoLocal.inserirDadosMaquina(processador, new Sistema(), 1);
+            maquinaDaoLocal.inserirDadosComponente(processador, memoriaRam, disco);
+        }
+        
         List<Integer> idsComponentesServer = maquinaDaoServer.getIdsComponentes(processador);
         List<Integer> idsComponentesLocal = maquinaDaoLocal.getIdsComponentes(processador);
 
@@ -41,6 +42,13 @@ public class App {
             @Override
             public void run() {
                 try {
+                    if (idsComponentesLocal == null || idsComponentesLocal.isEmpty() || idsComponentesLocal.size() < 3) {
+                        throw new IllegalStateException("idsComponentesLocal is null, empty, or does not contain enough elements");
+                    }
+                    if (idsComponentesServer == null || idsComponentesServer.isEmpty() || idsComponentesServer.size() < 3) {
+                        throw new IllegalStateException("idsComponentesServer is null, empty, or does not contain enough elements");
+                    }
+
                     maquinaDaoServer.executarComandoDeMaquina(processador);
                     maquinaDaoLocal.monitoramento(processador, memoriaRam, disco, idsComponentesLocal);
                     maquinaDaoServer.monitoramento(processador, memoriaRam, disco, idsComponentesServer);
