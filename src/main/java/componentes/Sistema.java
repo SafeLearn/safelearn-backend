@@ -59,7 +59,10 @@ public class Sistema extends Componente{
         return fabricante;
     }
 
-
+    public static void main(String[] args) {
+        Sistema sistema = new Sistema();
+        System.out.println(sistema.getSistemaOperacional());
+    }
 }
 
 

@@ -15,11 +15,10 @@ public class Bateria extends Componente {
 
     @Override
     public void inicializarInformacoes() {
-        Sistema sistema = new Sistema();
-        if (sistema.getSistemaOperacional().equals("Windows")) {
+        if (isWindows()) {
             obterStatusBateriaWindows();
             obterCapacidadeBateriaWindows();
-        } else if (sistema.getSistemaOperacional().equals("Linux")) {
+        } else if (isLinux()) {
             obterStatusBateriaLinux();
             obterCapacidadeBateriaLinux();
         } else {
@@ -110,6 +109,16 @@ public class Bateria extends Componente {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isWindows() {
+        return System.getProperty("os.name").toLowerCase().contains("win");
+    }
+
+    private boolean isLinux() {
+        return System.getProperty("os.name").toLowerCase().contains("nix") ||
+                System.getProperty("os.name").toLowerCase().contains("nux") ||
+                System.getProperty("os.name").toLowerCase().contains("aix");
     }
 
     public boolean isConectadoNaTomada() {
