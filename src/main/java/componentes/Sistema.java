@@ -58,4 +58,8 @@ public class Sistema extends Componente{
     public String getFabricante() {
         return fabricante;
     }
+
+
 }
+
+
