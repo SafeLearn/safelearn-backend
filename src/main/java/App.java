@@ -9,6 +9,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class App {
+    private static Runnable tarefaMonitoramento;
+
     public static void main(String[] args) {
         InserirRegistros inserirRegistros = new InserirRegistros();
 
@@ -20,6 +22,7 @@ public class App {
         GrupoJanelas janelas = new GrupoJanelas();
         Bateria bateria = new Bateria();
         SlackIntegracao slackIntegracao = new SlackIntegracao();
+        MaquinaDaoServer maquinaDaoServer1 = new MaquinaDaoServer();
 
         if (!maquinaDaoLocal.verificarRegistro(processador)) {
             maquinaDaoLocal.inserirDadosMaquina(processador, new Sistema(), 1);
@@ -42,6 +45,9 @@ public class App {
             @Override
             public void run() {
                 try {
+
+                    maquinaDaoServer1.setStatus(processador);
+                    
                     if (idsComponentesLocal == null || idsComponentesLocal.isEmpty() || idsComponentesLocal.size() < 3) {
                         throw new IllegalStateException("idsComponentesLocal is null, empty, or does not contain enough elements");
                     }
