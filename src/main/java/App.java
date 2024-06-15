@@ -68,6 +68,7 @@ public class App {
                 }
             }
         };
+        maquinaDaoServer1.setStatus(processador);
         scheduler.scheduleWithFixedDelay(tarefaMonitoramento, 0, 7, TimeUnit.SECONDS);
     }
 }
