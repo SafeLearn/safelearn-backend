@@ -46,7 +46,6 @@ public class App {
             public void run() {
                 try {
 
-                    maquinaDaoServer1.setStatus(processador);
                     
                     if (idsComponentesLocal == null || idsComponentesLocal.isEmpty() || idsComponentesLocal.size() < 3) {
                         throw new IllegalStateException("idsComponentesLocal is null, empty, or does not contain enough elements");
