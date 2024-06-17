@@ -15,22 +15,23 @@ public class Logar {
     public void logar() {
         Scanner scanner = new Scanner(System.in);
 
-        Boolean autenticado = false;
+        Boolean authenticated = false;
 
         do {
-            System.out.println("Nome de usuário: ");
+            System.out.println("Username: ");
             nomeUsuario = scanner.nextLine();
 
-            System.out.println("Senha: ");
+            System.out.println("Password: ");
             senha = scanner.nextLine();
 
-            autenticado = new LoginDao().autenticarUsuario(nomeUsuario, senha);
+            authenticated = new LoginDao().autenticarUsuario(nomeUsuario, senha);
 
-            if(!autenticado) {
-                System.out.println("Credenciais inválidas. Tente novamente.");
+            if (!authenticated) {
+                System.out.println("Invalid credentials. Please try again.");
             }
-        } while (!autenticado);
-        System.out.println("Login bem-sucedido!");
+        } while (!authenticated);
+
+        System.out.println("Login successful!");
     }
 
     public String getNomeUsuario() {

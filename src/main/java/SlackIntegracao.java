@@ -5,7 +5,7 @@ import java.net.URL;
 public class SlackIntegracao {
     private static final String WEBHOOK_URL = "https://hooks.slack.com/services/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";
 
-    //chamar sendAlert na logica ao verificar se o uso esta acima do esperado
+    // Call sendAlert in the logic when checking if usage is above expected
     public static void sendAlert(String message) {
         try {
             URL url = new URL(WEBHOOK_URL);
@@ -22,9 +22,9 @@ public class SlackIntegracao {
 
             int responseCode = connection.getResponseCode();
             if (responseCode == 200) {
-                System.out.println("Mensagem enviada com sucesso.");
+                System.out.println("Message sent successfully.");
             } else {
-                System.out.println("Erro ao enviar a mensagem. Response Code: " + responseCode);
+                System.out.println("Failed to send message. Response Code: " + responseCode);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -32,7 +32,6 @@ public class SlackIntegracao {
     }
 
     public static void main(String[] args) {
-        sendAlert("⚠️ Alerta de Desempenho: O sistema está apresentando alta utilização de recursos. Verifique o status de CPU, RAM, disco ou outros componentes críticos para prevenir possíveis falhas.");
+        sendAlert("⚠️ Performance Alert: The system is experiencing high resource usage. Check the status of CPU, RAM, disk, or other critical components to prevent potential failures.");
     }
-
 }

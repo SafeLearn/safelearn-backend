@@ -33,19 +33,17 @@ public class App {
 
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-        Runnable tarefaMonitoramento = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    maquinaDaoServer.executarComandoDeMaquina(processador);
-                    maquinaDaoLocal.monitoramento(processador, memoriaRam, disco, idsComponentesLocal);
-                    maquinaDaoServer.monitoramento(processador, memoriaRam, disco, idsComponentesServer);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    System.err.println("Erro no monitoramento: " + e.getMessage());
-                }
+        Runnable monitoringTask = () -> {
+            try {
+                maquinaDaoServer.executarComandoDeMaquina(processador);
+                maquinaDaoLocal.monitoramento(processador, memoriaRam, disco, idsComponentesLocal);
+                maquinaDaoServer.monitoramento(processador, memoriaRam, disco, idsComponentesServer);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println("Error in monitoring: " + e.getMessage());
             }
         };
-        scheduler.scheduleWithFixedDelay(tarefaMonitoramento, 0, 7, TimeUnit.SECONDS);
+
+        scheduler.scheduleWithFixedDelay(monitoringTask, 0, 7, TimeUnit.SECONDS);
     }
 }

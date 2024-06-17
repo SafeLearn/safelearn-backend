@@ -28,7 +28,7 @@ public class MaquinaDaoServer extends MaquinaDao {
                 return rs.next();
             }
         } catch (SQLException e) {
-            System.out.println("Erro: " + e);
+            System.out.println("Error: " + e);
             return false;
         }
     }
@@ -54,13 +54,13 @@ public class MaquinaDaoServer extends MaquinaDao {
             ps.executeUpdate();
             connectionServer.commit();
         } catch (SQLException e) {
-            System.out.println("Erro: " + e);
+            System.out.println("Error: " + e);
             try {
                 if (connectionServer != null) {
                     connectionServer.rollback();
                 }
             } catch (SQLException ex) {
-                System.out.println("Erro ao fazer rollback: " + ex);
+                System.out.println("Error during rollback: " + ex);
             }
         } finally {
             try {
@@ -72,7 +72,7 @@ public class MaquinaDaoServer extends MaquinaDao {
                     connectionServer.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Erro ao fechar recursos: " + e);
+                System.out.println("Error closing resources: " + e);
             }
         }
     }
@@ -90,13 +90,13 @@ public class MaquinaDaoServer extends MaquinaDao {
 
             ps = connectionServer.prepareStatement(sql);
 
-            ps.setString(1, "processador");
+            ps.setString(1, "processor");
             ps.setDouble(2, processador.getFrequencia() / 1e9);
             ps.setString(3, "GHz");
             ps.setString(4, processador.getId());
             ps.addBatch();
 
-            ps.setString(1, "memoria");
+            ps.setString(1, "memory");
             ps.setDouble(2, memoria.getMemoriaTotal());
             ps.setString(3, "GB");
             ps.setString(4, processador.getId());
@@ -104,7 +104,7 @@ public class MaquinaDaoServer extends MaquinaDao {
 
             List<Disco> discos = disco.getDiscos();
             for (Disco discoDaVez : discos) {
-                ps.setString(1, "disco");
+                ps.setString(1, "disk");
                 ps.setDouble(2, discoDaVez.getTamanho() / (1024 * 1024 * 1024));
                 ps.setString(3, "GB");
                 ps.setString(4, processador.getId());
@@ -114,13 +114,13 @@ public class MaquinaDaoServer extends MaquinaDao {
             ps.executeBatch();
             connectionServer.commit();
         } catch (SQLException e) {
-            System.out.println("Erro: " + e);
+            System.out.println("Error: " + e);
             try {
                 if (connectionServer != null) {
                     connectionServer.rollback();
                 }
             } catch (SQLException ex) {
-                System.out.println("Erro ao fazer rollback: " + ex);
+                System.out.println("Error during rollback: " + ex);
             }
         } finally {
             try {
@@ -132,7 +132,7 @@ public class MaquinaDaoServer extends MaquinaDao {
                     connectionServer.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Erro ao fechar recursos: " + e);
+                System.out.println("Error closing resources: " + e);
             }
         }
     }
@@ -155,26 +155,26 @@ public class MaquinaDaoServer extends MaquinaDao {
                 Integer status = rs.getInt("status");
 
                 if(status.equals(1)) {
-                    System.out.println("Desligando máquina via comando remoto.");
+                    System.out.println("Shutting down machine via remote command.");
                     SystemCommandExecutor.shutdown();
                 } else if(status.equals(2)) {
-                    System.out.println("Reiniciando máquina via comando remoto.");
+                    System.out.println("Restarting machine via remote command.");
                     SystemCommandExecutor.restart();
                 } else if(status.equals(3)) {
-                    System.out.println("Suspendendo máquina via comando remoto.");
+                    System.out.println("Suspending machine via remote command.");
                     SystemCommandExecutor.suspend();
                 }
             }
 
         } catch (SQLException e) {
-            System.out.println("Erro: " + e);
+            System.out.println("Error: " + e);
         } finally {
             try {
                 if (rs != null) rs.close();
                 if (ps != null) ps.close();
                 connectionServer.close();
             } catch (SQLException e) {
-                System.out.println("Erro: " + e);
+                System.out.println("Error: " + e);
             }
         }
     }
@@ -195,11 +195,11 @@ public class MaquinaDaoServer extends MaquinaDao {
             ps.executeBatch();
             connectionServer.commit();
         } catch (SQLException e) {
-            System.out.println("Erro: " + e);
+            System.out.println("Error: " + e);
             try {
                 connectionServer.rollback();
             } catch (SQLException ex) {
-                System.out.println("Erro ao fazer rollback: " + ex);
+                System.out.println("Error during rollback: " + ex);
             }
         } finally {
             try {
@@ -207,7 +207,7 @@ public class MaquinaDaoServer extends MaquinaDao {
                 connectionServer.setAutoCommit(true);
                 connectionServer.close();
             } catch (SQLException e) {
-                System.out.println("Erro: " + e);
+                System.out.println("Error: " + e);
             }
         }
     }
@@ -227,7 +227,7 @@ public class MaquinaDaoServer extends MaquinaDao {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro: " + e);
+            System.out.println("Error: " + e);
         }
         return idsComponentes;
     }
@@ -268,13 +268,13 @@ public class MaquinaDaoServer extends MaquinaDao {
             ps.executeBatch();
             connectionServer.commit();
         } catch (SQLException e) {
-            System.out.println("Erro: " + e);
+            System.out.println("Error: " + e);
             try {
                 if (connectionServer != null) {
                     connectionServer.rollback();
                 }
             } catch (SQLException ex) {
-                System.out.println("Erro ao fazer rollback: " + ex);
+                System.out.println("Error during rollback: " + ex);
             }
         } finally {
             try {
@@ -286,7 +286,7 @@ public class MaquinaDaoServer extends MaquinaDao {
                     connectionServer.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Erro ao fechar recursos: " + e);
+                System.out.println("Error closing resources: " + e);
             }
         }
     }

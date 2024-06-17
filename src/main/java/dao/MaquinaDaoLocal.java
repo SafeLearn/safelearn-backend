@@ -28,7 +28,7 @@ public class MaquinaDaoLocal extends MaquinaDao {
             rs = ps.executeQuery();
             return rs.next();
         } catch (SQLException e) {
-            System.out.println("Erro: " + e);
+            System.out.println("Error: " + e);
             return false;
         } finally {
             try {
@@ -36,7 +36,7 @@ public class MaquinaDaoLocal extends MaquinaDao {
                 if (ps != null) ps.close();
                 connectionLocal.close();
             } catch (SQLException e) {
-                System.out.println("Erro: " + e);
+                System.out.println("Error: " + e);
             }
         }
     }
@@ -60,11 +60,11 @@ public class MaquinaDaoLocal extends MaquinaDao {
 
             connectionLocal.commit();
         } catch (SQLException e) {
-            System.out.println("Erro: " + e);
+            System.out.println("Error: " + e);
             try {
                 connectionLocal.rollback();
             } catch (SQLException ex) {
-                System.out.println("Erro ao fazer rollback: " + ex);
+                System.out.println("Error during rollback: " + ex);
             }
         } finally {
             try {
@@ -72,7 +72,7 @@ public class MaquinaDaoLocal extends MaquinaDao {
                 connectionLocal.setAutoCommit(true);
                 connectionLocal.close();
             } catch (SQLException e) {
-                System.out.println("Erro: " + e);
+                System.out.println("Error: " + e);
             }
         }
     }
@@ -89,13 +89,13 @@ public class MaquinaDaoLocal extends MaquinaDao {
 
             ps = connectionLocal.prepareStatement(sql);
 
-            ps.setString(1, "processador");
+            ps.setString(1, "processor");
             ps.setDouble(2, processador.getFrequencia() / 1e9);
             ps.setString(3, "GHz");
             ps.setString(4, processador.getId());
             ps.addBatch();
 
-            ps.setString(1, "memoria");
+            ps.setString(1, "memory");
             ps.setDouble(2, memoria.getMemoriaTotal());
             ps.setString(3, "GB");
             ps.setString(4, processador.getId());
@@ -103,7 +103,7 @@ public class MaquinaDaoLocal extends MaquinaDao {
 
             List<Disco> discos = disco.getDiscos();
             for (Disco discoDaVez : discos) {
-                ps.setString(1, "disco");
+                ps.setString(1, "disk");
                 ps.setDouble(2, discoDaVez.getTamanho() / (1024 * 1024 * 1024));
                 ps.setString(3, "GB");
                 ps.setString(4, processador.getId());
@@ -113,11 +113,11 @@ public class MaquinaDaoLocal extends MaquinaDao {
             ps.executeBatch();
             connectionLocal.commit();
         } catch (SQLException e) {
-            System.out.println("Erro: " + e);
+            System.out.println("Error: " + e);
             try {
                 connectionLocal.rollback();
             } catch (SQLException ex) {
-                System.out.println("Erro ao fazer rollback: " + ex);
+                System.out.println("Error during rollback: " + ex);
             }
         } finally {
             try {
@@ -125,7 +125,7 @@ public class MaquinaDaoLocal extends MaquinaDao {
                 connectionLocal.setAutoCommit(true);
                 connectionLocal.close();
             } catch (SQLException e) {
-                System.out.println("Erro: " + e);
+                System.out.println("Error: " + e);
             }
         }
     }
@@ -148,14 +148,14 @@ public class MaquinaDaoLocal extends MaquinaDao {
                 idsComponentes.add(rs.getInt("idComponente"));
             }
         } catch (SQLException e) {
-            System.out.println("Erro: " + e);
+            System.out.println("Error: " + e);
         } finally {
             try {
                 if (rs != null) rs.close();
                 if (ps != null) ps.close();
                 connectionLocal.close();
             } catch (SQLException e) {
-                System.out.println("Erro: " + e);
+                System.out.println("Error: " + e);
             }
         }
         return idsComponentes;
@@ -196,11 +196,11 @@ public class MaquinaDaoLocal extends MaquinaDao {
             ps.executeBatch();
             connectionLocal.commit();
         } catch (SQLException e) {
-            System.out.println("Erro: " + e);
+            System.out.println("Error: " + e);
             try {
                 connectionLocal.rollback();
             } catch (SQLException ex) {
-                System.out.println("Erro ao fazer rollback: " + ex);
+                System.out.println("Error during rollback: " + ex);
             }
         } finally {
             try {
@@ -208,7 +208,7 @@ public class MaquinaDaoLocal extends MaquinaDao {
                 connectionLocal.setAutoCommit(true);
                 connectionLocal.close();
             } catch (SQLException e) {
-                System.out.println("Erro: " + e);
+                System.out.println("Error: " + e);
             }
         }
     }

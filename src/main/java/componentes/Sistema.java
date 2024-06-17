@@ -10,7 +10,7 @@ public class Sistema extends Componente{
     private String fabricante;
 
     public Sistema(){
-       super();
+        super();
         inicializarInformacoes();
     }
 
@@ -28,12 +28,12 @@ public class Sistema extends Componente{
 
         return String.format("\n"
                         + "______________________________\n"
-                        + "|  Informações do Sistema    |\n"
+                        + "|    System Information      |\n"
                         + "|----------------------------|\n"
-                        + "| Tempo de Atividade: %d minutos |\n"
-                        + "| Sistema Operacional: %s    |\n"
-                        + "| Arquitetura: %d bits       |\n"
-                        + "| Fabricante: %s             |\n"
+                        + "| Uptime: %d minutes         |\n"
+                        + "| Operating System: %s       |\n"
+                        + "| Architecture: %d bits      |\n"
+                        + "| Manufacturer: %s           |\n"
                         + "______________________________\n",
                 tempoAtividadeMinutos, sistemaOperacional, arquitetura, fabricante);
     }

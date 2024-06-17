@@ -10,7 +10,7 @@ public class UsoDisco extends Componente {
 
     public UsoDisco() {
         super();
-       inicializarInformacoes();
+        inicializarInformacoes();
     }
 
     @Override
@@ -18,7 +18,6 @@ public class UsoDisco extends Componente {
         this.discos = looca.getGrupoDeDiscos().getDiscos();
         this.qtdDiscos = looca.getGrupoDeDiscos().getQuantidadeDeDiscos();
     }
-
 
     public List<Disco> getDiscos() {
         return discos;
@@ -39,17 +38,15 @@ public class UsoDisco extends Componente {
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder("__________________________________\n");
-        string.append("|      Informações de Disco     |\n");
+        string.append("|      Disk Information          |\n");
         string.append("|--------------------------------|\n");
-        string.append("| Quantidade de Discos: ").append(getQtdDiscos()).append(" |\n");
+        string.append("| Number of Disks: ").append(getQtdDiscos()).append(" |\n");
 
         for (int i = 0; i < discos.size(); i++) {
             Disco disco = discos.get(i);
-            string.append("| Tamanho do Disco ").append(i + 1).append(": ").append(disco.getTamanho() / (1024 * 1024 * 1024)).append(" GB |\n");
+            string.append("| Disk Size ").append(i + 1).append(": ").append(disco.getTamanho() / (1024 * 1024 * 1024)).append(" GB |\n");
         }
         string.append("__________________________________\n");
         return string.toString();
     }
 }
-
-

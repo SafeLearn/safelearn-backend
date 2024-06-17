@@ -7,7 +7,6 @@ public class MemoriaRam extends Componente {
     private Double memoriaEmUso;
     private Double memoriaDisponivel;
 
-
     public MemoriaRam() {
         super();
         inicializarInformacoes();
@@ -15,7 +14,7 @@ public class MemoriaRam extends Componente {
 
     @Override
     public void inicializarInformacoes() {
-        this.memoriaTotal = looca.getMemoria().getTotal() / Math.pow(10, 9);;
+        this.memoriaTotal = looca.getMemoria().getTotal() / Math.pow(10, 9);
         this.memoriaEmUso = looca.getMemoria().getEmUso() / Math.pow(10, 9);
         this.memoriaDisponivel = looca.getMemoria().getDisponivel() / Math.pow(10, 9);
     }
@@ -24,15 +23,14 @@ public class MemoriaRam extends Componente {
     public String toString() {
         return String.format("\n"
                         + "__________________________________\n"
-                        + "|      Informações da Memória    |\n"
+                        + "|      Memory Information        |\n"
                         + "|--------------------------------|\n"
-                        + "| Memória Total: %.2f GB         |\n"
-                        + "| Memória em Uso: %.2f GB        |\n"
-                        + "| Memória Disponível: %.2f GB    |\n"
+                        + "| Total Memory: %.2f GB          |\n"
+                        + "| Memory in Use: %.2f GB         |\n"
+                        + "| Available Memory: %.2f GB      |\n"
                         + "__________________________________\n",
                 memoriaTotal, memoriaEmUso, memoriaDisponivel);
     }
-
 
     public Double getMemoriaTotal() {
         return memoriaTotal;
