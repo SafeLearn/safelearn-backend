@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SlackIntegracao {
 
-    private static final String WEBHOOK_URL = "https://hooks.slack.com/services/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";
+    private static final String WEBHOOK_URL = "https://hooks.slack.com/services/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";
 
     private static final double RAM_LIMITE = 70.0;
     private static final double RAM_CRITICO = 90.0;
