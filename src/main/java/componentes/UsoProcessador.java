@@ -9,6 +9,7 @@ public class UsoProcessador extends Componente {
     private Double uso;
     private Long frequencia;
 
+
     public UsoProcessador() {
         super();
         inicializarInformacoes();
@@ -22,21 +23,23 @@ public class UsoProcessador extends Componente {
         this.id = processador.getId();
         this.uso = processador.getUso();
         this.frequencia = processador.getFrequencia();
+
     }
 
     @Override
     public String toString() {
         return String.format("\n"
                         + "______________________________\n"
-                        + "|     Processor Usage        |\n"
+                        + "|      Uso do Processador     |\n"
                         + "|-----------------------------|\n"
-                        + "| Name: %s                   |\n"
-                        + "| ID: %s                     |\n"
-                        + "| Total (frequency): %.2f GHz|\n"
-                        + "| Usage: %.2f%%              |\n"
+                        + "| Nome: %s                    |\n"
+                        + "| ID: %s                      |\n"
+                        + "| Total (frequencia): %.2f GHz|\n"
+                        + "| Uso: %.2f%%                 |\n"
                         + "______________________________\n",
                 nome, id, frequencia / 1e9, uso);
     }
+
 
     public String getNome() {
         return nome;
@@ -46,6 +49,7 @@ public class UsoProcessador extends Componente {
         return id;
     }
 
+
     public Double getUso() {
         return uso;
     }
@@ -53,4 +57,6 @@ public class UsoProcessador extends Componente {
     public Long getFrequencia() {
         return frequencia;
     }
+
+
 }

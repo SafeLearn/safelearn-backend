@@ -31,13 +31,13 @@ public class GrupoJanelas {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("\n------ Window Group ------\n");
-        builder.append("Total Windows: ").append(getTotalJanelas()).append("\n");
-        builder.append("Total Visible Windows: ").append(getTotalJanelasVisiveis()).append("\n");
-        builder.append("\nWindow Details:\n");
+        builder.append("\n------ Grupo de Janelas ------\n");
+        builder.append("Total de Janelas: ").append(getTotalJanelas()).append("\n");
+        builder.append("Total de Janelas Visíveis: ").append(getTotalJanelasVisiveis()).append("\n");
+        builder.append("\nDetalhes das Janelas:\n");
         List<Janela> janelas = getJanelas();
         for (Janela janela : janelas) {
-            System.out.println("---- Window ----");
+            System.out.println("---- Janela ----");
             builder.append(janela).append("\n");
         }
         return builder.toString();

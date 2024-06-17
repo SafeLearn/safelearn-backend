@@ -37,9 +37,9 @@ public class InserirRegistros {
         if (!maquinaDaoLocal.verificarRegistro(processador)) {
             maquinaDaoLocal.inserirDadosMaquina(processador, sistema, fkInstituicao);
             maquinaDaoLocal.inserirDadosComponente(processador, memoria, disco);
-            System.out.println("Successfully registered locally!");
+            System.out.println("Registrado localmente com sucesso!");
         } else {
-            System.out.println("The machine is already registered locally.");
+            System.out.println("A máquina já está registrada localmente.");
         }
     }
 
@@ -47,9 +47,9 @@ public class InserirRegistros {
         if (!maquinaDaoServer.verificarRegistro(processador)) {
             maquinaDaoServer.inserirDadosMaquina(processador, sistema, fkInstituicao);
             maquinaDaoServer.inserirDadosComponente(processador, memoria, disco);
-            System.out.println("Successfully registered on the server!");
+            System.out.println("Registrado no servidor com sucesso!");
         } else {
-            System.out.println("The machine is already registered on the server.");
+            System.out.println("A máquina já está registrada no servidor.");
         }
     }
 }
